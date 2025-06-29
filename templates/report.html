@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Daily Report{% endblock %}
+{% block content %}
+<h2>Submit Inline Daily Report</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">{{ form.good_garment_total.label }} {{ form.good_garment_total(class="form-control") }}</div>
+    <div class="mb-3">{{ form.defeat_total.label }} {{ form.defeat_total(class="form-control") }}</div>
+    <div class="mb-3">{{ form.line_job_card_1.label }} {{ form.line_job_card_1(class="form-select") }}</div>
+    <div class="mb-3">{{ form.line_job_card_2.label }} {{ form.line_job_card_2(class="form-select") }}</div>
+    {% for i in range(1, 11) %}
+    <div class="mb-3">{{ form['test' + str(i)].label }} {{ form['test' + str(i)](class="form-control") }}</div>
+    {% endfor %}
+    <div>
+        {{ form.submit(class="btn btn-success") }}
+        {{ form.clear(class="btn btn-secondary") }}
+    </div>
+</form>
+{% endblock %}
