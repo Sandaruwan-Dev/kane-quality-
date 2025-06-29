@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Top 5 Lines Chart{% endblock %}
+{% block content %}
+<h2>Top 5 Line Job Cards ({{ period|capitalize }})</h2>
+<form method="get">
+    <select name="period" class="form-select" onchange="this.form.submit()">
+        <option value="daily" {% if period == 'daily' %}selected{% endif %}>Daily</option>
+        <option value="weekly" {% if period == 'weekly' %}selected{% endif %}>Weekly</option>
+        <option value="monthly" {% if period == 'monthly' %}selected{% endif %}>Monthly</option>
+    </select>
+</form>
+<canvas id="chart" width="400" height="200"></canvas>
+<script>
+    const labels = {{ top5|map(attribute=0)|list }};
+    const data = {{ top5|map(attribute=1)|list }};
+    new Chart(document.getElementById('chart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Top 5 Value [100 × test1 ÷ Defeat total]',
+                data: data,
+                borderWidth: 1
+            }]
+        }
+    });
+</script>
+{% endblock %}
