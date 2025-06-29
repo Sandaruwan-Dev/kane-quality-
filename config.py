@@ -1,7 +1,6 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgresql://postgres:password@localhost/yourdb'
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'supersecret')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('postgresql://postgres:HXzmecFtgqliKiOuoERouvowaugSpHRp@shortline.proxy.rlwy.net:40531/railway', 'postgresql://user:pass@localhost:5432/dbname')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
